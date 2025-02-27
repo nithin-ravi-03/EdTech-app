@@ -7,6 +7,7 @@ import Courses from './pages/Courses'
 import Community from './pages/Community'
 import Certificates from './pages/Certificates'
 import Profile from './pages/Profile'
+import PaymentPage from './pages/PaymentPage'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -29,6 +30,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/certificates" element={<Certificates />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/payment" element={<PaymentPage />} />
         </Routes>
       </main>
       <Footer />

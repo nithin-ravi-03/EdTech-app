@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FiSearch, FiFilter, FiBook, FiClock, FiStar, FiUser } from 'react-icons/fi'
 
 const Courses = () => {
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedLevel, setSelectedLevel] = useState('All')
@@ -19,6 +21,7 @@ const Courses = () => {
       duration: "8 weeks",
       rating: 4.8,
       students: 1245,
+      price: 49.99,
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80"
     },
     {
@@ -30,6 +33,7 @@ const Courses = () => {
       duration: "10 weeks",
       rating: 4.7,
       students: 987,
+      price: 59.99,
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -41,6 +45,7 @@ const Courses = () => {
       duration: "12 weeks",
       rating: 4.9,
       students: 756,
+      price: 69.99,
       image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -52,6 +57,7 @@ const Courses = () => {
       duration: "6 weeks",
       rating: 4.6,
       students: 1089,
+      price: 39.99,
       image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -63,6 +69,7 @@ const Courses = () => {
       duration: "8 weeks",
       rating: 4.5,
       students: 876,
+      price: 44.99,
       image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
@@ -74,6 +81,7 @@ const Courses = () => {
       duration: "10 weeks",
       rating: 4.7,
       students: 654,
+      price: 54.99,
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1415&q=80"
     }
   ]
@@ -86,6 +94,10 @@ const Courses = () => {
     
     return matchesSearch && matchesCategory && matchesLevel
   })
+  
+  const handleEnrollClick = (course) => {
+    navigate('/payment', { state: { course } })
+  }
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
@@ -176,7 +188,13 @@ const Courses = () => {
                     <FiStar className="mr-1" /> {course.rating}
                   </div>
                 </div>
-                <button className="btn btn-primary w-full">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="font-bold text-lg">${course.price.toFixed(2)}</span>
+                </div>
+                <button 
+                  className="btn btn-primary w-full"
+                  onClick={() => handleEnrollClick(course)}
+                >
                   Enroll Now
                 </button>
               </div>
