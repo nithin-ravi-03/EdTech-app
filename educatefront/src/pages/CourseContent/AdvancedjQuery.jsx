@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { advancedjQuery } from '../../data/courseContent/advancedjQuery';
+import { advancedJQuery } from '../../data/courseContent/advancedjQuery';
 
 const AdvancedjQuery = () => {
   const [currentLesson, setCurrentLesson] = useState(0);
@@ -11,7 +11,7 @@ const AdvancedjQuery = () => {
   const navigate = useNavigate();
 
   const handleNextLesson = () => {
-    if (currentLesson < advancedjQuery.lessons.length - 1) {
+    if (currentLesson < advancedJQuery.lessons.length - 1) {
       setCurrentLesson(prev => prev + 1);
     } else {
       setIsCourseComplete(true);
@@ -20,7 +20,7 @@ const AdvancedjQuery = () => {
   };
 
   const handleQuizSubmit = (lessonId) => {
-    const lesson = advancedjQuery.lessons.find(l => l.id === lessonId);
+    const lesson = advancedJQuery.lessons.find(l => l.id === lessonId);
     const correctAnswers = lesson.quiz.filter(q => q.answer === quizAnswers[q.question]).length;
     const score = (correctAnswers / lesson.quiz.length) * 100;
     setQuizResults({ ...quizResults, [lessonId]: score });
@@ -96,12 +96,12 @@ const AdvancedjQuery = () => {
     );
   }
 
-  const lesson = advancedjQuery.lessons[currentLesson];
+  const lesson = advancedJQuery.lessons[currentLesson];
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold mb-4">{advancedjQuery.title}</h1>
+        <h1 className="text-4xl font-bold mb-4">{advancedJQuery.title}</h1>
         <div className="bg-white rounded-xl shadow-md p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4">{lesson.title}</h2>
           <p className="text-gray-600 mb-4">{lesson.content}</p>
@@ -146,7 +146,7 @@ const AdvancedjQuery = () => {
           onClick={handleNextLesson}
           className="btn btn-primary"
         >
-          {currentLesson < advancedjQuery.lessons.length - 1 ? 'Next Lesson' : 'Finish Course'}
+          {currentLesson < advancedJQuery.lessons.length - 1 ? 'Next Lesson' : 'Finish Course'}
         </button>
       </div>
     </div>
