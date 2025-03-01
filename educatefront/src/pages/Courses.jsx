@@ -1,91 +1,25 @@
-import { useState } from 'react'
-import { FiSearch, FiFilter, FiBook, FiClock, FiStar, FiUser } from 'react-icons/fi'
+// src/pages/Courses.jsx
+import { useState } from 'react';
+import { FiSearch, FiFilter, FiBook, FiClock, FiStar, FiUser } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { courses } from '../data/coursesData'; // Import courses data
 
 const Courses = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedLevel, setSelectedLevel] = useState('All')
-  
-  const categories = ['All', 'Programming', 'Data Science', 'Design', 'Business', 'Marketing']
-  const levels = ['All', 'Beginner', 'Intermediate', 'Advanced']
-  
-  const courses = [
-    {
-      id: 1,
-      title: "Web Development Fundamentals",
-      description: "Learn the basics of HTML, CSS, and JavaScript to build responsive websites.",
-      category: "Programming",
-      level: "Beginner",
-      duration: "8 weeks",
-      rating: 4.8,
-      students: 1245,
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80"
-    },
-    {
-      id: 2,
-      title: "Data Science Essentials",
-      description: "Master the fundamentals of data analysis, visualization, and machine learning.",
-      category: "Data Science",
-      level: "Intermediate",
-      duration: "10 weeks",
-      rating: 4.7,
-      students: 987,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      id: 3,
-      title: "Mobile App Development",
-      description: "Build native mobile applications for iOS and Android using React Native.",
-      category: "Programming",
-      level: "Advanced",
-      duration: "12 weeks",
-      rating: 4.9,
-      students: 756,
-      image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      id: 4,
-      title: "UI/UX Design Principles",
-      description: "Learn the principles of user interface and user experience design.",
-      category: "Design",
-      level: "Beginner",
-      duration: "6 weeks",
-      rating: 4.6,
-      students: 1089,
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      id: 5,
-      title: "Digital Marketing Strategies",
-      description: "Develop effective digital marketing strategies for business growth.",
-      category: "Marketing",
-      level: "Intermediate",
-      duration: "8 weeks",
-      rating: 4.5,
-      students: 876,
-      image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      id: 6,
-      title: "Business Analytics",
-      description: "Learn how to analyze business data to make informed decisions.",
-      category: "Business",
-      level: "Advanced",
-      duration: "10 weeks",
-      rating: 4.7,
-      students: 654,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1415&q=80"
-    }
-  ]
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedLevel, setSelectedLevel] = useState('All');
+
+  const categories = ['All', 'Programming', 'Data Science', 'Design', 'Business', 'Marketing'];
+  const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+
   const filteredCourses = courses.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          course.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory
-    const matchesLevel = selectedLevel === 'All' || course.level === selectedLevel
-    
-    return matchesSearch && matchesCategory && matchesLevel
-  })
+                          course.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
+    const matchesLevel = selectedLevel === 'All' || course.level === selectedLevel;
+
+    return matchesSearch && matchesCategory && matchesLevel;
+  });
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen">
@@ -96,7 +30,7 @@ const Courses = () => {
             Discover a wide range of courses designed to help you learn new skills and advance your career.
           </p>
         </div>
-        
+
         {/* Search and Filters */}
         <div className="bg-white rounded-xl shadow-md p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
@@ -112,7 +46,7 @@ const Courses = () => {
                 className="input pl-10"
               />
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -128,7 +62,7 @@ const Courses = () => {
                   ))}
                 </select>
               </div>
-              
+
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiBook className="text-gray-400" />
@@ -146,7 +80,7 @@ const Courses = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Course Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.length > 0 ? (
@@ -176,9 +110,11 @@ const Courses = () => {
                     <FiStar className="mr-1" /> {course.rating}
                   </div>
                 </div>
-                <button className="btn btn-primary w-full">
-                  Enroll Now
-                </button>
+                <Link to={`/course/${course.path}`}>
+                  <button className="btn btn-primary w-full">
+                    Enroll Now
+                  </button>
+                </Link>
               </div>
             ))
           ) : (
@@ -190,7 +126,7 @@ const Courses = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Courses
+export default Courses;
