@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { javascriptInDepth } from '../../data/courseContent/javascriptInDepth';
+import { javascriptInDepth } from '../../data/courseContent/javaScriptInDepth';
 
 const JavaScriptInDepth = () => {
   const [currentLesson, setCurrentLesson] = useState(0);
